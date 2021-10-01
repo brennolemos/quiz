@@ -42,4 +42,13 @@ export default class QuestionModel {
 
     return false;
   }
+
+  toObject() {
+    return {
+      id: this.#id,
+      command: this.#command,
+      answers: this.#answers.map((answer) => answer.toObject()),
+      correct: this.#correct,
+    };
+  }
 }
