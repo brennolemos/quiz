@@ -1,5 +1,16 @@
 import questions from "../questionsBase";
 
 export default function handler(req, res) {
-  res.status(200).json(questions[0].toObject());
+  const selectedId = +req.query.id;
+
+  const selectedQuestions = questions.filter(
+    (question) => question.id === selectedId
+  );
+
+  if (selectedQuestions.length === 1) {
+    const selectedQuestion = selectedQuestions[0];
+    res.status(200).json(selectedQuestion.toObject());
+  } else {
+    res.status(204).send();
+  }
 }
