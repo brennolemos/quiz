@@ -8,7 +8,7 @@ export default function handler(req, res) {
   );
 
   if (selectedQuestions.length === 1) {
-    const selectedQuestion = selectedQuestions[0];
+    const selectedQuestion = selectedQuestions[0].shuffleQuestions();
     res.status(200).json(selectedQuestion.toObject());
   } else {
     res.status(204).send();
