@@ -1,14 +1,22 @@
+import { useState } from "react";
 import Question from "../components/Question";
 import AnswerModel from "../model/answer";
 import QuestionModel from "../model/question";
 
+const mockQuestion = new QuestionModel(1, "Melhor cor?", [
+  AnswerModel.wrong("Green"),
+  AnswerModel.wrong("Red"),
+  AnswerModel.wrong("Blue"),
+  AnswerModel.correct("Black"),
+]);
+
 export default function Home() {
-  const testQuestion = new QuestionModel(1, "Melhor cor?", [
-    AnswerModel.wrong("Green"),
-    AnswerModel.wrong("Red"),
-    AnswerModel.wrong("Blue"),
-    AnswerModel.correct("Black"),
-  ]);
+  const [question, setQuestion] = useState(mockQuestion);
+
+  function onResponse(index: number) {
+    setQuestion(question.answerWith(index));
+    console.log(index);
+  }
 
   return (
     <div
@@ -19,7 +27,7 @@ export default function Home() {
         height: "100vh",
       }}
     >
-      <Question value={testQuestion} />
+      <Question value={question} onResponse={onResponse} />
     </div>
   );
 }

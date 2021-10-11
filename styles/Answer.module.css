@@ -1,0 +1,68 @@
+.answer {
+  display: flex;
+  height: 100px;
+  min-width: 500px;
+  width: 80%;
+  margin: 10px;
+}
+
+.answerContent {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.front,
+.back {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.front {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  color: #000;
+  align-items: center;
+}
+
+.back > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  border-radius: 12px;
+}
+
+.right {
+  background-color: #2baa6d;
+}
+
+.wrong {
+  background-color: #e44a4c;
+}
+
+.back .value {
+  font-size: 1.5rem;
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-right: 20px;
+  color: #fff;
+}
+
+.value {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
