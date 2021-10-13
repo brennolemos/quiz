@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Question from "../components/Question";
 import AnswerModel from "../model/answer";
 import QuestionModel from "../model/question";
@@ -12,13 +12,19 @@ const mockQuestion = new QuestionModel(1, "Melhor cor?", [
 
 export default function Home() {
   const [question, setQuestion] = useState(mockQuestion);
+  const questionRef = useRef<QuestionModel>();
+
+  useEffect(() => {
+    questionRef.current = question;
+  }, [question]);
 
   function onResponse(index: number) {
     setQuestion(question.answerWith(index));
   }
 
   function onComplete() {
-    if (!question.answered) setQuestion(question.answerWith(-1));
+    if (!questionRef.current.answered)
+      setQuestion(questionRef.current.answerWith(-1));
   }
 
   return (

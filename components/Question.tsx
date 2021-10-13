@@ -13,6 +13,7 @@ const options = [
 
 interface QuestionProps {
   value: QuestionModel;
+  answerTime?: number;
   onResponse: (index: number) => void;
   onComplete: () => void;
 }
@@ -38,7 +39,7 @@ export default function Question(props: QuestionProps) {
   return (
     <div className={styles.question}>
       <Command text={question.command} />
-      <Timer duration={10} onComplete={props.onComplete} />
+      <Timer duration={props.answerTime ?? 10} onComplete={props.onComplete} />
       {renderAnswers()}
     </div>
   );
