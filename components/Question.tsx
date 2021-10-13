@@ -2,6 +2,7 @@ import QuestionModel from "../model/question";
 import styles from "../styles/Question.module.css";
 import Answer from "./Answer";
 import Command from "./Command";
+import Timer from "./Timer";
 
 const options = [
   { value: "A", color: "#F2C866" },
@@ -13,6 +14,7 @@ const options = [
 interface QuestionProps {
   value: QuestionModel;
   onResponse: (index: number) => void;
+  onComplete: () => void;
 }
 
 export default function Question(props: QuestionProps) {
@@ -36,6 +38,7 @@ export default function Question(props: QuestionProps) {
   return (
     <div className={styles.question}>
       <Command text={question.command} />
+      <Timer duration={10} onComplete={props.onComplete} />
       {renderAnswers()}
     </div>
   );

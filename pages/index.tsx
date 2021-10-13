@@ -15,7 +15,10 @@ export default function Home() {
 
   function onResponse(index: number) {
     setQuestion(question.answerWith(index));
-    console.log(index);
+  }
+
+  function onComplete() {
+    if (!question.answered) setQuestion(question.answerWith(-1));
   }
 
   return (
@@ -27,7 +30,11 @@ export default function Home() {
         height: "100vh",
       }}
     >
-      <Question value={question} onResponse={onResponse} />
+      <Question
+        value={question}
+        onResponse={onResponse}
+        onComplete={onComplete}
+      />
     </div>
   );
 }
